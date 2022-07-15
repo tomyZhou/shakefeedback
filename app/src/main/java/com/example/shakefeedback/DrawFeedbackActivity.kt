@@ -2,6 +2,7 @@ package com.example.shakefeedback
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -214,5 +215,11 @@ class DrawFeedbackActivity : Activity() {
 
     override fun onDestroy() {
         super.onDestroy()
+
+        //通知页面又可以出悬浮按钮了
+        val intent = Intent()
+        intent.action = "FeedbackPageFinish"
+        intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
+        sendBroadcast(intent,null)
     }
 }

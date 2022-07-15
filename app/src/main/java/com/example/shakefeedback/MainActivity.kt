@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        FeedbackManager().feedback(this)
+        FeedbackManager(this).feedback()
 
         findViewById<TextView>(R.id.tv_next).setOnClickListener {
             val intent:Intent = Intent(this,SecondActivity::class.java)
