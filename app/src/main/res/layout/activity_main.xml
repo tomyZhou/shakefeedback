@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="央视网(cctv.com)新闻频道是面向全球,多语种,多终端的立体化新闻信息共享平台。以视听与互动为核心,24小时不间断提供最快捷,最权威,最全面,最丰富的新闻视听与互动服务,传播中国,了解世界。央视网(cctv.com)新闻频道是面向全球,多语种,多终端的立体化新闻信息共享平台。以视听与互动为核心,24小时不间断提供最快捷,最权威,最全面,最丰富的新闻视听与互动服务,传播中国,了解世界。央视网(cctv.com)新闻频道是面向全球,多语种,多终端的立体化新闻信息共享平台。以视听与互动为核心,24小时不间断提供最快捷,最权威,最全面,最丰富的新闻视听与互动服务,传播中国,了解世界。央视网(cctv.com)新闻频道是面向全球,多语种,多终端的立体化新闻信息共享平台。以视听与互动为核心,24小时不间断提供最快捷,最权威,最全面,最丰富的新闻视听与互动服务,传播中国,了解世界。"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
