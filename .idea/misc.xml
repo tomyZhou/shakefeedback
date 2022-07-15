@@ -3,6 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/workspace/demo/shakefeedback/app/src/main/res/drawable/shape_round_rect_bg.xml" value="0.1" />
+        <entry key="..\:/workspace/demo/shakefeedback/app/src/main/res/layout/activity_draw_feedback.xml" value="0.22395833333333334" />
+        <entry key="..\:/workspace/demo/shakefeedback/app/src/main/res/layout/activity_main.xml" value="0.22395833333333334" />
+        <entry key="..\:/workspace/demo/shakefeedback/app/src/main/res/layout/en_floating_view.xml" value="0.22395833333333334" />
         <entry key="..\:/workspace/shakefeedback/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1365" />
         <entry key="..\:/workspace/shakefeedback/app/src/main/res/drawable/red_dash_border.xml" value="0.1365" />
         <entry key="..\:/workspace/shakefeedback/app/src/main/res/drawable/shape_round_rect_bg.xml" value="0.1365" />
