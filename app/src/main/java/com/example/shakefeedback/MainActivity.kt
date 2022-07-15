@@ -1,9 +1,11 @@
 package com.example.shakefeedback
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 
 class MainActivity : AppCompatActivity() {
@@ -12,6 +14,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         FeedbackManager().feedback(this)
+
+        findViewById<TextView>(R.id.tv_next).setOnClickListener {
+            val intent:Intent = Intent(this,SecondActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 

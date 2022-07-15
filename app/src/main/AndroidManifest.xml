@@ -10,9 +10,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShakeFeedback">
         <activity
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:name=".DrawFeedbackActivity"
+            android:name=".SecondActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:exported="false" />
+        <activity
+            android:name=".DrawFeedbackActivity"
+            android:exported="false"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -23,7 +27,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
