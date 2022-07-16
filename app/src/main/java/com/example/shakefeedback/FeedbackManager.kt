@@ -17,9 +17,13 @@ import androidx.core.view.ViewCompat
 import com.example.shakefeedback.floatingview.EnFloatingView
 import com.example.shakefeedback.floatingview.FloatingMagnetView
 import com.example.shakefeedback.floatingview.MagnetViewListener
+import java.io.BufferedOutputStream
+import java.io.File
+import java.io.FileOutputStream
 
 
 class FeedbackManager {
+
 
     private var activity: Activity? = null
 
@@ -31,7 +35,10 @@ class FeedbackManager {
 
     private var floatView: EnFloatingView? = null
 
+    private var backgroundImage: String? = null
+
     var isShow = false  //是否显示悬浮按钮
+
 
     var isOnFeedbackPage = false //是否已经去到了反馈页面，去到了反馈页面shake不再显示按钮
 
@@ -40,7 +47,12 @@ class FeedbackManager {
         var intentFilter = IntentFilter();
         intentFilter.addAction("FeedbackPageFinish");
         var myBroadcastReceiver = MyBroadcastReceiver();
-        activity?.registerReceiver(myBroadcastReceiver, intentFilter);
+        try {
+            activity?.registerReceiver(myBroadcastReceiver, intentFilter);
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+
     }
 
 
@@ -54,17 +66,20 @@ class FeedbackManager {
             //获取屏幕截屏
             var bitmap = screenShoot(activity!!)
 
+            //将图片保存，传到反馈页面作为背景。
+            backgroundImage = saveFile(bitmap).absolutePath
+
             //添加浮动按钮
-            mContainer =
-                activity!!.window.decorView.findViewById<View>(android.R.id.content) as FrameLayout
+            mContainer = activity!!.window.decorView as FrameLayout
             var floatView = getFloatView(activity!!)
             floatView.setIconBitmap(bitmap)
             floatView.layoutParams = initLayoutParams()
 
             try {
-                if (ViewCompat.isAttachedToWindow(floatView)) {
-                    mContainer?.removeView(floatView)
-                }
+                Log.e("xxx", "將上一個懸浮按鈕去掉")
+                mContainer?.removeView(floatView)
+
+                Log.e("xxx", "添加新的懸浮按鈕")
                 mContainer?.addView(floatView)
             } catch (exception: Exception) {
                 exception.printStackTrace()
@@ -89,8 +104,9 @@ class FeedbackManager {
             override fun onClick(magnetView: FloatingMagnetView?) {
                 dismiss(activity)
 
-                //去掉涂鸦反馈页
+                //去到反馈页
                 val intent = Intent(activity, DrawFeedbackActivity::class.java)
+                intent.putExtra("backgroundImage", backgroundImage)
                 activity.startActivity(intent)
 
                 isOnFeedbackPage = true
@@ -118,6 +134,8 @@ class FeedbackManager {
         dView.buildDrawingCache()
         val bitmap = Bitmap.createBitmap(dView.drawingCache)
 
+        //解决多次截图不更新的问题
+        dView.setDrawingCacheEnabled(false);
 
         //默认getDocorView的截屏包含状态栏，需要将状态栏去掉。
         // 获取状态栏的高度
@@ -128,8 +146,26 @@ class FeedbackManager {
         val width: Int = activity.windowManager.getDefaultDisplay().getWidth()
         val height: Int = activity.windowManager.getDefaultDisplay().getHeight()
         //去掉状态栏的截图
+
+        Log.e("xxx", "獲取新的截圖")
         return Bitmap.createBitmap(bitmap, 0, statusBarHeight, width, height - statusBarHeight)
     }
+
+    private fun saveFile(bitmap: Bitmap): File {
+        var fileName = System.currentTimeMillis().toString() + ".jpg"
+        var path = activity?.filesDir?.absolutePath
+        var dirFile = File("$path/feedback")
+        if (!dirFile.exists()) {
+            dirFile.mkdir();
+        }
+        var myCaptureFile = File(path + fileName);
+        var bos = BufferedOutputStream(FileOutputStream(myCaptureFile));
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 80, bos);
+        bos.flush();
+        bos.close();
+        return myCaptureFile;
+    }
+
 
     //去掉悬浮按钮
     private fun dismiss(activity: Activity) {
@@ -179,7 +215,7 @@ class FeedbackManager {
 
     inner class MyBroadcastReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context, intent: Intent) {
-            Log.e("xxx","收到通知了")
+            Log.e("xxx", "收到通知了")
             //通知已经从feedback页面回来了，可以弹悬浮按钮了
             isOnFeedbackPage = false
         }
