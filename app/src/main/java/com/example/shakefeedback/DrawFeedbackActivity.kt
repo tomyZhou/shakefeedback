@@ -219,10 +219,10 @@ class DrawFeedbackActivity : Activity() {
 
                     uploadInfo(uploadImageUrl)
                 } else {
-                    Toast.makeText(this, "上传失败", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, headBean.retmsg, Toast.LENGTH_SHORT).show()
                 }
             }, { error ->
-                Toast.makeText(this, "上传失败", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "上传失败，请检查网络", Toast.LENGTH_SHORT).show()
             })
     }
 
@@ -250,10 +250,10 @@ class DrawFeedbackActivity : Activity() {
 
                     finish()
                 } else {
-                    Toast.makeText(this, "上传失败", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, headBean.retmsg, Toast.LENGTH_SHORT).show()
                 }
             }, { error ->
-                Toast.makeText(this, "上传失败", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "上传失败，请检查网络", Toast.LENGTH_SHORT).show()
             })
     }
 
