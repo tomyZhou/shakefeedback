@@ -189,7 +189,14 @@ class DrawFeedbackActivity : Activity() {
     }
 
 
-    //上传反馈图片  https://blog.csdn.net/Aran_biubiu/article/details/104979672?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1-104979672-blog-82012692.pc_relevant_multi_platform_whitelistv1&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1-104979672-blog-82012692.pc_relevant_multi_platform_whitelistv1&utm_relevant_index=1
+    //上传反馈图片
+    /**
+     *  retrofit subscribe 没写出错时的函数时直接报错。
+     * https://blog.csdn.net/msn465780/article/details/82012692
+     *
+     * https://blog.csdn.net/Aran_biubiu/article/details/104979672?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1-104979672-blog-82012692.pc_relevant_multi_platform_whitelistv1&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1-104979672-blog-82012692.pc_relevant_multi_platform_whitelistv1&utm_relevant_index=1
+     *
+     */
     fun upload(bitmap: Bitmap) {
 
         var file = saveFile(bitmap)
