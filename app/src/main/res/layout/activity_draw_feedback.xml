@@ -3,11 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/root"
     android:layout_height="match_parent"
     tools:context=".DrawFeedbackActivity">
 
 
-    <androidx.appcompat.widget.LinearLayoutCompat
+    <LinearLayout
         android:id="@+id/ll_menu"
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -39,7 +40,7 @@
             android:textSize="24dp"
             android:textStyle="bold" />
 
-    </androidx.appcompat.widget.LinearLayoutCompat>
+    </LinearLayout>
 
     <com.example.shakefeedback.HuaBanView
         android:id="@+id/huaban"
@@ -83,6 +84,7 @@
             android:focusableInTouchMode="true"
             android:gravity="center"
             android:minHeight="30dp"
+            android:visibility="gone"
             android:textColor="@color/white"
             android:textSize="24dp"
             app:layout_constraintStart_toStartOf="parent"

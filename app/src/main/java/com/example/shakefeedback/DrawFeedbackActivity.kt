@@ -14,7 +14,6 @@ import android.view.Gravity
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
-import androidx.appcompat.widget.LinearLayoutCompat
 import androidx.constraintlayout.widget.ConstraintLayout
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -190,7 +189,7 @@ class DrawFeedbackActivity : Activity() {
     }
 
 
-    //上传反馈图片
+    //上传反馈图片  https://blog.csdn.net/Aran_biubiu/article/details/104979672?spm=1001.2101.3001.6650.1&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1-104979672-blog-82012692.pc_relevant_multi_platform_whitelistv1&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7Edefault-1-104979672-blog-82012692.pc_relevant_multi_platform_whitelistv1&utm_relevant_index=1
     fun upload(bitmap: Bitmap) {
 
         var file = saveFile(bitmap)
@@ -206,7 +205,7 @@ class DrawFeedbackActivity : Activity() {
         uploadService.upload(part)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { headBean ->
+            .subscribe({ headBean ->
                 if (headBean.retcode == 0) {
                     var uploadImageUrl = headBean.domain + headBean.src
                     Log.e("xxx", uploadImageUrl)
@@ -215,7 +214,9 @@ class DrawFeedbackActivity : Activity() {
                 } else {
                     Toast.makeText(this, "上传失败", Toast.LENGTH_SHORT).show()
                 }
-            }
+            }, { error ->
+                Toast.makeText(this, "上传失败", Toast.LENGTH_SHORT).show()
+            })
     }
 
 
@@ -233,7 +234,7 @@ class DrawFeedbackActivity : Activity() {
             .uploadInfo(imageUrl, stringBuffer.toString())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { headBean ->
+            .subscribe({ headBean ->
                 if (headBean.retcode == 0) {
                     Toast.makeText(this, "上传成功", Toast.LENGTH_SHORT).show()
 
@@ -244,7 +245,9 @@ class DrawFeedbackActivity : Activity() {
                 } else {
                     Toast.makeText(this, "上传失败", Toast.LENGTH_SHORT).show()
                 }
-            }
+            }, { error ->
+                Toast.makeText(this, "上传失败", Toast.LENGTH_SHORT).show()
+            })
     }
 
     private fun saveFile(bitmap: Bitmap): File {
