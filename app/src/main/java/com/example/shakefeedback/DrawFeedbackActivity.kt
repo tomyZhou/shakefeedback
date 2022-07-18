@@ -81,6 +81,7 @@ class DrawFeedbackActivity : Activity() {
             ivDraw?.setImageResource(R.mipmap.draw_able)
             flTextContainer?.isClickable = false
             ivUndo?.visibility = View.VISIBLE
+            tvText?.setTextColor(Color.parseColor("#f2f2f2"))
         }
 
         //底部菜单，文本
@@ -93,6 +94,7 @@ class DrawFeedbackActivity : Activity() {
             tvComplete?.text = "完成"
             tvLeftTwo?.visibility = View.VISIBLE
             flTextContainer?.isClickable = true
+            tvText?.setTextColor(Color.parseColor("#F84C4B"))
 
             showSoftInputFromWindow(this, etEditor!!)
             ivDraw?.setImageResource(R.mipmap.draw_unable)
@@ -276,7 +278,7 @@ class DrawFeedbackActivity : Activity() {
     fun addView(content: String) {
         var textView: DragTextView = DragTextView(this)
         textView.text = etEditor?.text
-        textView.setTextColor(Color.parseColor("#444444"))
+        textView.setTextColor(Color.parseColor("#F84C4B"))
         textView.textSize = 24f
         textView.background = resources.getDrawable(R.drawable.red_dash_border)
         textView.setPadding(30, 20, 30, 20)
