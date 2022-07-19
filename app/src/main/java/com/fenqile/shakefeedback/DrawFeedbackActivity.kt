@@ -382,7 +382,7 @@ class DrawFeedbackActivity : Activity() {
         uploadInfo = UploadInfo()
 
         uploadInfo?.did = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
-        uploadInfo?.uid = "uid-xxxxxx" //TODO 这里需要填自己的用户id
+        uploadInfo?.uid = "3087863" //TODO 这里需要填自己的用户id
         uploadInfo?.os = "android"
         uploadInfo?.osversion = Build.VERSION.RELEASE
         uploadInfo?.appversion = UploadInfoManger.getVersionName(this)
