@@ -14,6 +14,7 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.core.view.ViewCompat
+import com.fenqile.shakefeedback.R
 import com.fenqile.shakefeedback.floatingview.EnFloatingView
 import com.fenqile.shakefeedback.floatingview.FloatingMagnetView
 import com.fenqile.shakefeedback.floatingview.MagnetViewListener

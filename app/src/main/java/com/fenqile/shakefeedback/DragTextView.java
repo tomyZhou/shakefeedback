@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 
 import androidx.appcompat.widget.AppCompatTextView;
 
+import com.fenqile.shakefeedback.R;
 import com.fenqile.shakefeedback.floatingview.MagnetViewListener;
 import com.fenqile.shakefeedback.floatingview.utils.SystemUtils;
 
