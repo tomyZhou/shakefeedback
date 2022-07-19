@@ -1,4 +1,4 @@
-package com.example.shakefeedback
+package com.fenqile.shakefeedback
 
 import android.annotation.SuppressLint
 import android.app.Activity

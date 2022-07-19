@@ -1,4 +1,4 @@
-package com.example.shakefeedback.floatingview;
+package com.fenqile.shakefeedback.floatingview;
 
 
 /**

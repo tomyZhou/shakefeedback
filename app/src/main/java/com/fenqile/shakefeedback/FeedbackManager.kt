@@ -1,4 +1,4 @@
-package com.example.shakefeedback
+package com.fenqile.shakefeedback
 
 import android.app.Activity
 import android.content.BroadcastReceiver
@@ -14,9 +14,9 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.core.view.ViewCompat
-import com.example.shakefeedback.floatingview.EnFloatingView
-import com.example.shakefeedback.floatingview.FloatingMagnetView
-import com.example.shakefeedback.floatingview.MagnetViewListener
+import com.fenqile.shakefeedback.floatingview.EnFloatingView
+import com.fenqile.shakefeedback.floatingview.FloatingMagnetView
+import com.fenqile.shakefeedback.floatingview.MagnetViewListener
 import java.io.BufferedOutputStream
 import java.io.File
 import java.io.FileOutputStream

@@ -1,4 +1,4 @@
-package com.example.shakefeedback.floatingview.utils;
+package com.fenqile.shakefeedback.floatingview.utils;
 
 import android.app.Application;
 

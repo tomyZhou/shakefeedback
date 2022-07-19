@@ -1,4 +1,4 @@
-package com.example.shakefeedback.floatingview;
+package com.fenqile.shakefeedback.floatingview;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -8,7 +8,7 @@ import androidx.annotation.DrawableRes;
 import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 
-import com.example.shakefeedback.R;
+import com.fenqile.shakefeedback.R;
 
 
 /**

@@ -1,4 +1,4 @@
-package com.example.shakefeedback
+package com.fenqile.shakefeedback
 
 import android.app.Activity
 import android.content.Context
@@ -8,7 +8,9 @@ import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.graphics.Rect
 import android.graphics.drawable.BitmapDrawable
+import android.os.Build
 import android.os.Bundle
+import android.provider.Settings
 import android.util.Log
 import android.view.Gravity
 import android.view.View
@@ -43,6 +45,7 @@ class DrawFeedbackActivity : Activity() {
     private var llMenu: LinearLayout? = null
     private var mDragTextViewList: HashMap<String, DragTextView> = HashMap()
     private var mSelectedTextId: String = ""
+    private var uploadInfo: UploadInfo? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -67,6 +70,9 @@ class DrawFeedbackActivity : Activity() {
         llMenu = findViewById(R.id.ll_menu)
         flTextContainer = findViewById(R.id.fl_text_container)
         root = findViewById(R.id.root)
+
+        //初始化上传基础参数
+        initUploadInfo()
 
         backgroundImage = intent.getStringExtra("backgroundImage")
 
@@ -238,9 +244,21 @@ class DrawFeedbackActivity : Activity() {
             stringBuffer.append("#")
         }
 
-        RetrofitManager.getInstance().getRetrofit("http://paya.fenqile.com/")
+        RetrofitManager.getInstance().getRetrofit("https://paya.fenqile.com/")
             .create(UploadService::class.java)
-            .uploadInfo(imageUrl, stringBuffer.toString())
+            .uploadInfo(
+                imageUrl,
+                stringBuffer.toString(),
+                uploadInfo?.did,
+                uploadInfo?.uid,
+                uploadInfo?.os,
+                uploadInfo?.osversion,
+                uploadInfo?.appversion,
+                uploadInfo?.apppkgname,
+                uploadInfo?.appname,
+                uploadInfo?.brand,
+                uploadInfo?.mobile
+            )
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ headBean ->
@@ -357,6 +375,20 @@ class DrawFeedbackActivity : Activity() {
     fun hideSoftInputFromWindow(activity: Activity, editText: EditText) {
         val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(editText.windowToken, 0)
+    }
+
+    fun initUploadInfo() {
+        uploadInfo = UploadInfo()
+
+        uploadInfo?.did = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
+        uploadInfo?.uid = "uid-xxxxxx" //TODO 这里需要填自己的用户id
+        uploadInfo?.os = "android"
+        uploadInfo?.osversion = Build.VERSION.RELEASE
+        uploadInfo?.appversion = UploadInfoManger.getVersionName(this)
+        uploadInfo?.apppkgname = packageName
+        uploadInfo?.appname = "买吖"
+        uploadInfo?.brand = Build.BRAND + "/"+ Build.MODEL
+        uploadInfo?.mobile = "12311111111"   //TODO 这里需要填自己的用户mobile
     }
 
     override fun onDestroy() {

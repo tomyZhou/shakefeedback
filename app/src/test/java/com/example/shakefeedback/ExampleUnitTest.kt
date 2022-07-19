@@ -1,4 +1,4 @@
-package com.example.shakefeedback
+package com.fenqile.shakefeedback
 
 import org.junit.Test
 

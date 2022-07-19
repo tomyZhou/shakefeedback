@@ -1,4 +1,4 @@
-package com.example.shakefeedback
+package com.fenqile.shakefeedback
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

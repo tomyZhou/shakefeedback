@@ -1,4 +1,4 @@
-package com.example.shakefeedback.floatingview;
+package com.fenqile.shakefeedback.floatingview;
 
 import android.content.Context;
 import android.content.res.Configuration;
@@ -10,7 +10,7 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
-import com.example.shakefeedback.floatingview.utils.SystemUtils;
+import com.fenqile.shakefeedback.floatingview.utils.SystemUtils;
 
 /**
  * @ClassName FloatingMagnetView

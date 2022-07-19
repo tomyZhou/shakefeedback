@@ -1,4 +1,4 @@
-package com.example.shakefeedback;
+package com.fenqile.shakefeedback;
 
 import android.content.Context;
 import android.graphics.Bitmap;

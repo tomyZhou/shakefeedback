@@ -1,4 +1,4 @@
-package com.example.shakefeedback;
+package com.fenqile.shakefeedback;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -8,8 +8,8 @@ import android.view.MotionEvent;
 
 import androidx.appcompat.widget.AppCompatTextView;
 
-import com.example.shakefeedback.floatingview.MagnetViewListener;
-import com.example.shakefeedback.floatingview.utils.SystemUtils;
+import com.fenqile.shakefeedback.floatingview.MagnetViewListener;
+import com.fenqile.shakefeedback.floatingview.utils.SystemUtils;
 
 
 public class DragTextView extends AppCompatTextView {

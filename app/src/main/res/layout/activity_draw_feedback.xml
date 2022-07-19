@@ -22,7 +22,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:padding="5dp"
-            android:src="@mipmap/draw_unable" />
+            android:src="@mipmap/draw_able" />
 
         <View
             android:layout_width="2dp"
@@ -42,7 +42,7 @@
 
     </LinearLayout>
 
-    <com.example.shakefeedback.HuaBanView
+    <com.fenqile.shakefeedback.HuaBanView
         android:id="@+id/huaban"
         android:layout_width="match_parent"
         android:layout_height="0dp"

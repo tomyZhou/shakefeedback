@@ -1,7 +1,7 @@
-package com.example.shakefeedback;
+package com.fenqile.shakefeedback;
 
 
-import com.example.shakefeedback.floatingview.FloatingMagnetView;
+import com.fenqile.shakefeedback.floatingview.FloatingMagnetView;
 
 
 public interface MyDragTextViewListener {
