@@ -23,7 +23,7 @@ import java.util.Vector;
 public class HuaBanView extends View {
 
     /**
-     * 缓冲位图
+     * 缓冲位图   https://blog.csdn.net/mChenys/article/details/122569156
      */
     private Bitmap cacheBitmap;
     /**
@@ -129,12 +129,14 @@ public class HuaBanView extends View {
                 pY = event.getY();
                 break;
             case MotionEvent.ACTION_UP:
+                //拿起手指时才将其画在缓冲bitmap上
                 cacheCanvas.drawPath(path, paint);
                 pathList.push(path);
                 Log.e("xxx", path.toString());
                 Log.e("xxx", pathList.size() + "");
                 break;
         }
+        //onmove的时候也会一直调用绘制实时图形
         invalidate();
 
         return true;
