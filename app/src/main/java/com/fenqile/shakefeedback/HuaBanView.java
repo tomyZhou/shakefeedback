@@ -153,7 +153,7 @@ public class HuaBanView extends View {
         //将之前的路径绘图绘制进新的画板上
         canvas.drawBitmap(cacheBitmap, 0, 0, bitmapPaint);
 
-        //绘制最新的一个路径
+        //绘制最新的一个路径,如果没有这一句也能画上去，只不过是手抬起来才画上去。
         canvas.drawPath(path, paint);
 
         Log.e("xxx", "绘制最新一个路径");
@@ -178,6 +178,7 @@ public class HuaBanView extends View {
             //将路径保存列表中的路径重绘在画布上
             Log.e("xxx-剩余步数", pathList.size() + "");
 
+            //将路径减少一个画到缓存画布上，再将缓存画布画到显示的画布上。
             for (Path path : pathList.vector) {
                 cacheCanvas.drawPath(path, paint);
                 this.path = path;

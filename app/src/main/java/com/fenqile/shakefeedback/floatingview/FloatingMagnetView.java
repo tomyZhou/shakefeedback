@@ -39,6 +39,12 @@ public class FloatingMagnetView extends FrameLayout {
     private boolean dragEnable = true;
     private boolean autoMoveToEdge = true;
 
+    private float originX;
+    private float originY;
+
+    private float moveX;
+    private float moveY;
+
     public void setMagnetViewListener(MagnetViewListener magnetViewListener) {
         this.mMagnetViewListener = magnetViewListener;
     }
@@ -84,6 +90,11 @@ public class FloatingMagnetView extends FrameLayout {
         }
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+
+                //记录下当前按下点的坐标相对父容器的位置
+                originY = event.getY();
+                originX = event.getX();
+
                 dealDownEvent();
                 break;
             case MotionEvent.ACTION_MOVE:
@@ -96,7 +107,7 @@ public class FloatingMagnetView extends FrameLayout {
                 }
                 if (isOnClickEvent()) {
                     dealClickEvent();
-                }else{
+                } else {
                     dealUpEvent();
                 }
                 break;
@@ -116,7 +127,7 @@ public class FloatingMagnetView extends FrameLayout {
         }
     }
 
-    protected void dealDownEvent(){
+    protected void dealDownEvent() {
         if (mMagnetViewListener != null) {
             mMagnetViewListener.onDown(this);
         }
@@ -129,31 +140,55 @@ public class FloatingMagnetView extends FrameLayout {
     private void updateViewPosition(MotionEvent event) {
         //dragEnable
         if (!dragEnable) return;
-        //占满width或height时不用变
-        LayoutParams params = (LayoutParams) getLayoutParams();
+
+//    *********************移动ViewGroup方法一 :layout *****************/
+//        float y = event.getY();
+//        float x = event.getX();
+//
+//        moveX = x - originX;
+//        moveY = y - originY;
+//
+//        //view移动前的上下左右位置
+//        float left = getLeft() + moveX;
+//        float top = getTop() + moveY;
+//        float right = getRight() + moveX;
+//        float bottom = getBottom() + moveY;
+//
+//        if ((left) < 0) {
+//            left = 0;
+//            right = getWidth();
+//        }
+//
+//        if (top < mStatusBarHeight) {
+//            top = mStatusBarHeight;
+//            bottom = getHeight()+mStatusBarHeight;
+//        }
+//        layout((int) (left), (int) (top), (int) (right), (int) (bottom));
+
+
+
+//        **********************移动ViewGroup方法二：setX,setY ******************//
         //限制不可超出屏幕宽度
         float desX = mOriginalX + event.getRawX() - mOriginalRawX;
-        if (params.width == LayoutParams.WRAP_CONTENT) {
-            if (desX < 0) {
-                desX = MARGIN_EDGE;
-            }
-            if (desX > mScreenWidth) {
-                desX = mScreenWidth - MARGIN_EDGE;
-            }
-            setX(desX);
+        if (desX < 0) {
+            desX = MARGIN_EDGE;
         }
+        if (desX > mScreenWidth) {
+            desX = mScreenWidth - MARGIN_EDGE;
+        }
+        setX(desX);
+
         // 限制不可超出屏幕高度
         float desY = mOriginalY + event.getRawY() - mOriginalRawY;
-        if (params.height == LayoutParams.WRAP_CONTENT) {
-            if (desY < mStatusBarHeight) {
-                desY = mStatusBarHeight;
-            }
-            if (desY > mScreenHeight - getHeight()) {
-                desY = mScreenHeight - getHeight();
-            }
-            setY(desY);
+        if (desY < mStatusBarHeight) {
+            desY = mStatusBarHeight;
         }
+        if (desY > mScreenHeight - getHeight()) {
+            desY = mScreenHeight - getHeight();
+        }
+        setY(desY);
     }
+
 
     private void changeOriginalTouchParams(MotionEvent event) {
         mOriginalX = getX();
@@ -205,6 +240,7 @@ public class FloatingMagnetView extends FrameLayout {
         }
     }
 
+    //自定义移动动画
     protected class MoveAnimator implements Runnable {
 
         private Handler handler = new Handler(Looper.getMainLooper());
@@ -224,6 +260,7 @@ public class FloatingMagnetView extends FrameLayout {
             if (getRootView() == null || getRootView().getParent() == null) {
                 return;
             }
+            //400ms
             float progress = Math.min(1, (System.currentTimeMillis() - startingTime) / 400f);
             float deltaX = (destinationX - getX()) * progress;
             float deltaY = (destinationY - getY()) * progress;
@@ -238,6 +275,7 @@ public class FloatingMagnetView extends FrameLayout {
         }
     }
 
+    //通过不断的 setX，setY来移动位置
     private void move(float deltaX, float deltaY) {
         setX(getX() + deltaX);
         setY(getY() + deltaY);
